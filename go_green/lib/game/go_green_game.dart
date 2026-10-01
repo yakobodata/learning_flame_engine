@@ -6,6 +6,7 @@ import 'package:flame/camera.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_green/constants.dart';
 import 'package:go_green/game/go_green_world.dart';
 
@@ -27,7 +28,30 @@ HorizontalDragDetector,KeyboardEvents,HasCollisionDetection{
   }
   @override
   Color backgroundColor(){
-    return Colors.green;
+    return Colors.yellow;
   }
 
+  @override
+  void onHorizontalDragUpdate(DragUpdateInfo info){
+    super.onHorizontalDragUpdate(info);
+    //This is going to give us the changing x
+    world.player.move(info.delta.global.x);
+  }
+
+  @override
+  KeyEventResult onKeyEvent(
+    KeyEvent event, Set<LogicalKeyboardKey>keysPressed){
+      const double moveSpeed = 55.0;
+
+      if(event is KeyDownEvent){
+        if(keysPressed.contains(LogicalKeyboardKey.arrowRight)){
+          world.player.move(moveSpeed);
+          return KeyEventResult.handled;
+        }else if(keysPressed.contains(LogicalKeyboardKey.arrowLeft)){
+          world.player.move(-moveSpeed);
+          return KeyEventResult.handled;
+        }
+      }
+      return KeyEventResult.ignored;
+    }
 }

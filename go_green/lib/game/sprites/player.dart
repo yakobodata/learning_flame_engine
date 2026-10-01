@@ -1,5 +1,5 @@
-import 'dart:ui';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:go_green/constants.dart';
 import 'package:go_green/game/go_green_game.dart';
@@ -11,6 +11,7 @@ class Player extends SpriteComponent with HasGameReference<GoGreenGame>{
     size = Vector2.all(100);
     position=Vector2(0, -(gameHeight/2)+(size.y/2));
     anchor = Anchor.center;
+    add(RectangleHitbox());
   }
   
 
@@ -29,4 +30,13 @@ class Player extends SpriteComponent with HasGameReference<GoGreenGame>{
 
     position.y = newY;
   }
+
+  void move(double deltaX){
+    double newX = position.x + deltaX;
+    double minX = -(game.size.x/2)+size.x/2;//Left Boundary
+    double maxX =  (game.size.x)-size.x/2;// Right Boundary
+    newX = newX.clamp(minX, maxX);
+    position.x = newX;
+  }
+
 }
