@@ -20,7 +20,7 @@ class Player extends SpriteComponent with HasGameReference<GoGreenGame>{
     super.update(dt);
 
     //This is the code that makes the code to go down
-    double newY = position.y + (dt * 400);
+    double newY = position.y + (dt * 100);
 
     //This is the code that ensures that the code stays down
     //When its moving down

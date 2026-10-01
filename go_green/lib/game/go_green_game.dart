@@ -24,7 +24,7 @@ HorizontalDragDetector,KeyboardEvents,HasCollisionDetection{
   @override
   FutureOr<void>onLoad(){
     super.onLoad();
-    debugMode=true;
+    // debugMode=true;
   }
   @override
   Color backgroundColor(){
