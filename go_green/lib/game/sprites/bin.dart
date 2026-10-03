@@ -1,6 +1,8 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_green/game/go_green_game.dart';
+import 'package:go_green/game/sprites/obstacle.dart';
 import 'package:go_green/game/sprites/player.dart';
 
 class Bin extends SpriteComponent with HasGameReference<GoGreenGame>,CollisionCallbacks{
@@ -20,4 +22,37 @@ class Bin extends SpriteComponent with HasGameReference<GoGreenGame>,CollisionCa
       }
       super.onCollisionStart(intersectionPoints,other);
     }
+}
+
+class BinTrash extends Obstacle{
+  BinTrash():super(spritePath:'bin_trash.png');
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ){
+    if(other is Player){
+      other.removeFromParent();
+      //End State set
+    }
+    super.onCollisionStart(intersectionPoints,other);
+  }
+}
+
+class BinRecycle extends Obstacle{
+  BinRecycle():super(spritePath:'recycle_bin.png');
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ){
+    if(other is Player){
+      other.removeFromParent();
+      debugPrint("Hit Recycling Bin1");
+      //Win State set
+    }
+    super.onCollisionStart(intersectionPoints,other);
+  }
 }

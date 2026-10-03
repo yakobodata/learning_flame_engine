@@ -28,7 +28,7 @@ HorizontalDragDetector,KeyboardEvents,HasCollisionDetection{
   }
   @override
   Color backgroundColor(){
-    return Colors.yellow;
+    return Colors.white;
   }
 
   @override
