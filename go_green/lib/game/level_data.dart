@@ -20,7 +20,6 @@ class ObstacleData{
     required this.type});
 }
 
-
 class LevelData {
   final obstacleSpacing = obstacleSize + (playerHeight*2);
   final leftSide = -(gameWidth/2) + (obstacleSize/2);
@@ -41,7 +40,6 @@ class LevelData {
       throw Exception('Level not found');
     }
   }
-
 
   List<ObstacleData> level1() {
     List<ObstacleData> level = [];
